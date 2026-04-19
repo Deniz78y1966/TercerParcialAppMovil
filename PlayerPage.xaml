@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Parcial13_GaleriaMusical.PlayerPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Parcial13_GaleriaMusical.Models"
+             xmlns:vm="clr-namespace:Parcial13_GaleriaMusical.ViewModels"
+             x:DataType="vm:MediaPlayerViewModel"
+             Title="🎵 Reproductor">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+
+        <!-- Song List -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Songs}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSongSelected"
+                        HeightRequest="250">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Song">
+                    <Grid Padding="15" BackgroundColor="White" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" 
+                               Text="{Binding Id, StringFormat='{0:D2}'}" 
+                               FontSize="24" 
+                               FontAttributes="Bold"
+                               TextColor="#512BD4"/>
+                        <StackLayout Grid.Column="1" Margin="10,0,0,0">
+                            <Label Text="{Binding Title}" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding Artist}" 
+                                   FontSize="14" 
+                                   TextColor="Gray"/>
+                        </StackLayout>
+                        <Label Grid.Column="2" 
+                               Text="{Binding DurationSeconds, StringFormat='{0}\'\'m'}"
+                               FontSize="14"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- 🎨 Visualizer -->
+        <GraphicsView x:Name="VisualizerView" 
+              Drawable="{Binding Visualizer}"
+              HeightRequest="200"
+              BackgroundColor="Black"
+              Margin="0,0,0,20"/>
+
+        <!-- Player Controls -->
+        <VerticalStackLayout Grid.Row="2" Spacing="20">
+
+            <!-- Current Song Info -->
+            <Frame BackgroundColor="LightBlue" Padding="15" CornerRadius="10">
+                <Label Text="{Binding PlaybackStatus}" 
+                       FontSize="16" 
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+            </Frame>
+
+            <!-- Controls -->
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                <Button Text="⏮️" 
+                        Command="{Binding NextCommand}"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        WidthRequest="60" HeightRequest="60"/>
+                <Button Text="{Binding IsPlaying, Converter={StaticResource BoolToPlayPauseIcon}}" 
+                        Command="{Binding PlayPauseCommand}"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        WidthRequest="80" HeightRequest="80"
+                        FontSize="24" FontAttributes="Bold"/>
+                <Button Text="⏹️" 
+                        Command="{Binding StopCommand}"
+                        BackgroundColor="#F44336"
+                        TextColor="White"
+                        WidthRequest="60" HeightRequest="60"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

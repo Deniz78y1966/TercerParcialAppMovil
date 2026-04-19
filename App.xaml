@@ -1,0 +1,83 @@
+﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Parcial13_GaleriaMusical"
+             x:Class="Parcial13_GaleriaMusical.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- 🎨 Light Colors -->
+            <Color x:Key="PrimaryLight">#1DB954</Color>
+            <Color x:Key="BackgroundLight">#FFFFFF</Color>
+            <Color x:Key="SurfaceLight">#F5F5F5</Color>
+            <Color x:Key="TextPrimaryLight">#000000</Color>
+
+            <!-- 🌙 Dark Colors -->
+            <Color x:Key="PrimaryDark">#1DB954</Color>
+            <Color x:Key="BackgroundDark">#121212</Color>
+            <Color x:Key="SurfaceDark">#282828</Color>
+            <Color x:Key="TextPrimaryDark">#FFFFFF</Color>
+
+            <!-- ✅ .NET 10 OnPlatform (Works Perfect!) -->
+            <OnPlatform x:Key="Primary" 
+                        iOS="{StaticResource PrimaryLight}"
+                        Android="{StaticResource PrimaryLight}"
+                        WinUI="{StaticResource PrimaryDark}"
+                        Default="{StaticResource PrimaryLight}"/>
+
+            <OnPlatform x:Key="Background" 
+                        iOS="{StaticResource BackgroundLight}"
+                        Android="{StaticResource BackgroundLight}"
+                        WinUI="{StaticResource BackgroundDark}"
+                        Default="{StaticResource BackgroundLight}"/>
+
+            <OnPlatform x:Key="Surface" 
+                        iOS="{StaticResource SurfaceLight}"
+                        Android="{StaticResource SurfaceLight}"
+                        WinUI="{StaticResource SurfaceDark}"
+                        Default="{StaticResource SurfaceLight}"/>
+
+            <OnPlatform x:Key="TextPrimary" 
+                        iOS="{StaticResource TextPrimaryLight}"
+                        Android="{StaticResource TextPrimaryLight}"
+                        WinUI="{StaticResource TextPrimaryDark}"
+                        Default="{StaticResource TextPrimaryLight}"/>
+
+            <!-- 🎨 3+ Global Styles (Teacher Wants) -->
+            <Style TargetType="Label" x:Key="TitleStyle">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="SubtitleLabel">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="CardStyle">
+                <Setter Property="BackgroundColor" Value="{StaticResource Surface}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="20"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="PrimaryButtonStyle">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- Your Toggle Style -->
+            <Style TargetType="Button" x:Key="ThemeToggleButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

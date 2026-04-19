@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Parcial13_GaleriaMusical.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Parcial13_GaleriaMusical.Models"
+             Title="Galería Musical">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <!-- 🎵 Title -->
+        <Label Text="📱 Galería Musical" 
+               FontSize="28" 
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#512BD4"/>
+
+        <!-- ✅ Database Buttons -->
+        <Frame BackgroundColor="LightBlue" Padding="20" CornerRadius="15">
+            <VerticalStackLayout Spacing="10">
+                <Button Text="➕ Add Sample Song" 
+                        Clicked="OnAddSampleSongClicked" 
+                        BackgroundColor="#512BD4"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        FontAttributes="Bold"/>
+
+                <Button Text="🔄 Load Songs" 
+                        Clicked="OnLoadSongsClicked"
+                        BackgroundColor="#0288D1"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- ✅ Songs List -->
+        <Label Text="📂 Mis Canciones" 
+               FontSize="20" 
+               FontAttributes="Bold"
+               Margin="0,0,0,10"/>
+
+        <ListView x:Name="SongsListView" 
+                  HeightRequest="350"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Song">
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="🗑️ Delete" 
+                                           BackgroundColor="#F44336"
+                                           Invoked="OnDeleteSongInvoked" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Frame BackgroundColor="White" 
+                               HasShadow="True"
+                               CornerRadius="10"
+                               Margin="5"
+                               Padding="15">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0" Spacing="5">
+                                    <Label Text="{Binding Title}" 
+                                           FontSize="18" 
+                                           FontAttributes="Bold"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding Artist}" 
+                                           FontSize="14" 
+                                           TextColor="Gray" />
+                                </StackLayout>
+                                <Label Grid.Column="1" 
+                                       Text="{Binding DurationSeconds, StringFormat='{0}\'\'m'}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End"/>
+                            </Grid>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- ✅ Status -->
+        <Label x:Name="StatusLabel" 
+               Text="Ready to add songs!"
+               HorizontalOptions="Center"
+               FontSize="14"
+               Opacity="0.7"
+               Margin="0,20,0,0" />
+
+        <!-- 🌙 THEME TOGGLE BUTTON -->
+        <Frame BackgroundColor="{StaticResource Surface}" Padding="20" CornerRadius="15" Margin="0,20">
+            <Button x:Name="ThemeToggleButton"
+                    Text="☀️ Light Mode"
+                    Clicked="OnToggleThemeClicked"
+                    BackgroundColor="{StaticResource Secondary}"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="55"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"/>
+        </Frame>
+
+        <!-- 🎵 Player Button (NEW!) -->
+        <Button Text="🎵 Go to Media Player" 
+                Clicked="OnGoToPlayerClicked"
+                BackgroundColor="#9C27B0"
+                TextColor="White"
+                CornerRadius="15"
+                HeightRequest="55"
+                FontSize="16"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>
